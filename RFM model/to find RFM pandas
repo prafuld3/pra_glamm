@@ -1,0 +1,14 @@
+cus=csv[(csv['is_member_bg']==0) & (csv['status_id']==15)] # here our csv is all the dataframe till date
+b1=cus[['consumer_id', 'order_number']]
+b2=cus[['consumer_id', 'date diff']]
+b3=cus[['consumer_id', 'product_price']]
+frequency=b1.groupby(['consumer_id']).count()
+recency=b2.groupby(['consumer_id']).min()
+monetary_value=b3.groupby(['consumer_id']).sum()
+recency.sort_values(by='date diff').head(4)
+
+consumer_id=cus['consumer_id'].sort_values()
+
+con_id=consumer_id.unique()
+
+df1=pd.DataFrame({'consumer_id':con_id,'Frequency':frequency['order_number'], 'Recency':recency['date diff'].values, 'Monetary value':monetary_value['product_price'].values})
