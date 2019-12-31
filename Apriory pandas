@@ -1,6 +1,0 @@
-lstt=[]
-for i in lst:
-    for j in lst1:
-            lstt.append(list(df1['product_name'][df1['order_date_ist']==i][df1['consumer_id']==j].values))
-            
-    
